@@ -6,10 +6,10 @@ log() {
     echo "•" $*
 }
 
-log "Deleting virtual machines"
-export PATH=~/.wks/bin:$PATH
-sudo env "PATH=$PATH" footloose delete
-
 log "Deleting Kubernetes nodes and pods"
 kubectl get no --all-namespaces -o json | kubectl delete -f -
 kubectl get po --all-namespaces -o json | kubectl delete -f -
+
+log "Deleting virtual machines"
+export PATH=~/.wks/bin:$PATH
+sudo env "PATH=$PATH" footloose delete
