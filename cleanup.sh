@@ -7,8 +7,10 @@ log() {
 }
 
 log "Deleting Kubernetes nodes and pods"
-sudo kubectl get no --all-namespaces -o json | kubectl delete -f -
-sudo kubectl get po --all-namespaces -o json | kubectl delete -f -
+export PATH=~/.wks/bin:$PATH
+sudo env "PATH=$PATH" kubectl get po --all-namespaces -o json | kubectl delete -f -
+#kubectl get no --all-namespaces -o json | kubectl delete -f -
+#kubectl get po --all-namespaces -o json | kubectl delete -f -
 
 log "Deleting virtual machines"
 export PATH=~/.wks/bin:$PATH
